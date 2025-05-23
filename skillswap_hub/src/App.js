@@ -1,36 +1,71 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, selectIsAuthenticated } from './store/slices/authSlice';
+
+// Import global styles
+import './assets/styles/global.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="app">
-      <nav className="navbar">
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <div className="logo">
-              <span className="logo-symbol">*</span> KAVIA AI
-            </div>
-            <button className="btn">Template Button</button>
-          </div>
-        </div>
-      </nav>
+// Import containers
+import HomePage from './containers/HomePage';
+import SkillsPage from './containers/SkillsPage';
+import ProfilePage from './containers/ProfilePage';
+import AuthPage from './containers/AuthPage';
 
-      <main>
-        <div className="container">
-          <div className="hero">
-            <div className="subtitle">AI Workflow Manager Template</div>
-            
-            <h1 className="title">skillswap_hub</h1>
-            
-            <div className="description">
-              Start building your application.
-            </div>
-            
-            <button className="btn btn-large">Button</button>
-          </div>
-        </div>
-      </main>
-    </div>
+// Define protected route component
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  
+  if (!isAuthenticated) {
+    // Redirect to login page with the return url
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+function App() {
+  const dispatch = useDispatch();
+  
+  // Handle user logout
+  const handleLogout = () => {
+    dispatch(logout());
+    // After logout, redirect to home page
+    window.location.href = '/';
+  };
+  
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<HomePage onLogout={handleLogout} />} />
+        <Route path="/skills" element={<SkillsPage onLogout={handleLogout} />} />
+        <Route path="/login" element={<AuthPage onLogout={handleLogout} />} />
+        <Route path="/register" element={<AuthPage onLogout={handleLogout} />} />
+        
+        {/* Protected routes */}
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/my-skills" 
+          element={
+            <ProtectedRoute>
+              <SkillsPage onLogout={handleLogout} mySkillsOnly={true} />
+            </ProtectedRoute>
+          }
+        />
+        
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
