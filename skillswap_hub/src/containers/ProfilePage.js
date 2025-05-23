@@ -194,7 +194,7 @@ const ProfilePage = ({ onLogout }) => {
                     color: 'var(--error)',
                     borderColor: 'var(--error)'
                   }}
-                  onClick={() => confirm('Are you sure you want to deactivate your account? This action cannot be undone.')}
+                  onClick={() => window.confirm('Are you sure you want to deactivate your account? This action cannot be undone.')}
                 >
                   Deactivate Account
                 </Button>

@@ -22,3 +22,95 @@ Compiling...
 Compiled successfully!
 webpack compiled successfully
 Compiling...
+Failed to compile.
+
+[eslint] 
+src/containers/ProfilePage.js
+  Line 197:34:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/containers/AuthPage.js
+  Line 1:17:  'useState' is defined but never used     no-unused-vars
+  Line 19:8:  'authService' is defined but never used  no-unused-vars
+
+src/containers/ProfilePage.js
+  Line 41:6:  React Hook useEffect has a missing dependency: 'fetchUserSkills'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/containers/SkillsPage.js
+  Line 5:8:   'Button' is defined but never used                                                                                                      no-unused-vars
+  Line 6:8:   'Card' is defined but never used                                                                                                        no-unused-vars
+  Line 19:8:  'skillsService' is defined but never used                                                                                               no-unused-vars
+  Line 45:6:  React Hook useEffect has missing dependencies: 'fetchCategories' and 'fetchSkills'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+ERROR in [eslint] 
+src/containers/ProfilePage.js
+  Line 197:34:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/containers/ProfilePage.js
+  Line 197:34:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/containers/AuthPage.js
+  Line 1:17:  'useState' is defined but never used     no-unused-vars
+  Line 19:8:  'authService' is defined but never used  no-unused-vars
+
+src/containers/ProfilePage.js
+  Line 41:6:  React Hook useEffect has a missing dependency: 'fetchUserSkills'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/containers/SkillsPage.js
+  Line 5:8:   'Button' is defined but never used                                                                                                      no-unused-vars
+  Line 6:8:   'Card' is defined but never used                                                                                                        no-unused-vars
+  Line 19:8:  'skillsService' is defined but never used                                                                                               no-unused-vars
+  Line 45:6:  React Hook useEffect has missing dependencies: 'fetchCategories' and 'fetchSkills'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+ERROR in [eslint] 
+src/containers/ProfilePage.js
+  Line 197:34:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/containers/AuthPage.js
+  Line 1:17:  'useState' is defined but never used     no-unused-vars
+  Line 19:8:  'authService' is defined but never used  no-unused-vars
+
+src/containers/ProfilePage.js
+  Line 41:6:  React Hook useEffect has a missing dependency: 'fetchUserSkills'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/containers/SkillsPage.js
+  Line 5:8:   'Button' is defined but never used                                                                                                      no-unused-vars
+  Line 6:8:   'Card' is defined but never used                                                                                                        no-unused-vars
+  Line 19:8:  'skillsService' is defined but never used                                                                                               no-unused-vars
+  Line 45:6:  React Hook useEffect has missing dependencies: 'fetchCategories' and 'fetchSkills'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/containers/AuthPage.js
+  Line 1:17:  'useState' is defined but never used     no-unused-vars
+  Line 19:8:  'authService' is defined but never used  no-unused-vars
+
+src/containers/ProfilePage.js
+  Line 41:6:  React Hook useEffect has a missing dependency: 'fetchUserSkills'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/containers/SkillsPage.js
+  Line 5:8:   'Button' is defined but never used                                                                                                      no-unused-vars
+  Line 6:8:   'Card' is defined but never used                                                                                                        no-unused-vars
+  Line 19:8:  'skillsService' is defined but never used                                                                                               no-unused-vars
+  Line 45:6:  React Hook useEffect has missing dependencies: 'fetchCategories' and 'fetchSkills'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
