@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/skillswap-hub-2501-2200/skillswap_hub"
+}
