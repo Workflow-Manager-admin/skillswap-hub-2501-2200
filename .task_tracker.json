@@ -1,0 +1,5 @@
+{
+  "task_description": "{'component_name': 'Main Container for SkillSwap Hub', 'description': 'Primary container for SkillSwap Hub implementation: A full-stack application that enables users to exchange skill-based services through a peer-to-peer skill trading platform. The application uses a multi-container Docker architecture to ensure modularity, scalability, and easy deployment.', 'framework': 'react', 'platform': 'web'}",
+  "tasks": {},
+  "next_task_id": 1
+}
