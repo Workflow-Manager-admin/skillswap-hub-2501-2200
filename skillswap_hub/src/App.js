@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import { logout, selectIsAuthenticated } from './store/slices/authSlice';
 
-// Import global styles
-import './assets/styles/global.css';
+// Import theme and global styles
+import { theme } from './assets/styles/theme';
+import GlobalStyle from './assets/styles/GlobalStyle';
 import './App.css';
 
 // Import containers
@@ -36,36 +38,39 @@ function App() {
   };
   
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/" element={<HomePage onLogout={handleLogout} />} />
-        <Route path="/skills" element={<SkillsPage onLogout={handleLogout} />} />
-        <Route path="/login" element={<AuthPage onLogout={handleLogout} />} />
-        <Route path="/register" element={<AuthPage onLogout={handleLogout} />} />
-        
-        {/* Protected routes */}
-        <Route 
-          path="/profile" 
-          element={
-            <ProtectedRoute>
-              <ProfilePage onLogout={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path="/my-skills" 
-          element={
-            <ProtectedRoute>
-              <SkillsPage onLogout={handleLogout} mySkillsOnly={true} />
-            </ProtectedRoute>
-          }
-        />
-        
-        {/* Fallback route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<HomePage onLogout={handleLogout} />} />
+          <Route path="/skills" element={<SkillsPage onLogout={handleLogout} />} />
+          <Route path="/login" element={<AuthPage onLogout={handleLogout} />} />
+          <Route path="/register" element={<AuthPage onLogout={handleLogout} />} />
+          
+          {/* Protected routes */}
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <ProfilePage onLogout={handleLogout} />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+            path="/my-skills" 
+            element={
+              <ProtectedRoute>
+                <SkillsPage onLogout={handleLogout} mySkillsOnly={true} />
+              </ProtectedRoute>
+            }
+          />
+          
+          {/* Fallback route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
