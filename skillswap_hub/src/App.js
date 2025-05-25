@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { logout, selectIsAuthenticated } from './store/slices/authSlice';
 
 // Import theme and global styles
-import { theme } from './assets/styles/theme';
+import theme from './assets/styles/theme';
 import GlobalStyle from './assets/styles/GlobalStyle';
 import './App.css';
 
