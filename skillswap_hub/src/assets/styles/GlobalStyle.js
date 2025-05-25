@@ -207,7 +207,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .subtitle {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary.main};
     font-weight: 500;
     font-size: 1.1rem;
   }
