@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PageLayout from '../components/layout/PageLayout';
 import SkillsList from '../components/skills/SkillsList';
-import Button from '../components/common/Button';
-import Card from '../components/common/Card';
 import { 
   selectAllSkills,
   selectCategories,
@@ -16,7 +14,6 @@ import {
   fetchCategoriesFailure
 } from '../store/slices/skillsSlice';
 import { selectIsAuthenticated, selectUser } from '../store/slices/authSlice';
-import skillsService from '../services/skillsService';
 
 // PUBLIC_INTERFACE
 /**
