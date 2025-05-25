@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
-    background-color: ${props => props.theme.colors.background.dark};
+    background-color: ${props => props.theme.colors.background.default};
     color: ${props => props.theme.colors.text.primary.dark};
   }
 
