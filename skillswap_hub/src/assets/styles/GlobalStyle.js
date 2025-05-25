@@ -275,24 +275,27 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  /* Navbar styles from App.css */
+  /* Navbar styles with improved box-shadow and transitions */
   .navbar {
-    background-color: ${props => props.theme.colors.legacy.dark};
+    background-color: ${props => props.theme.colors.background.paper};
     padding: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid ${props => props.theme.colors.legacy.borderColor};
+    border-bottom: 1px solid ${props => props.theme.colors.border.dark};
     position: fixed;
     top: 0;
     width: 100%;
     box-sizing: border-box;
-    z-index: 100;
+    z-index: ${props => props.theme.zIndex.sticky};
+    box-shadow: ${props => props.theme.shadows.sm};
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(8px);
   }
 
   .logo {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: ${props => props.theme.typography.fontWeight.semibold};
     display: flex;
     align-items: center;
     gap: 8px;
@@ -302,7 +305,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.primary.main};
   }
 
-  /* App styles */
+  /* App styles with improved spacing and responsiveness */
   .app {
     min-height: 100vh;
     display: flex;
@@ -310,34 +313,44 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .hero {
-    padding-top: 120px;
-    padding-bottom: 64px;
+    padding-top: max(120px, 25vh);
+    padding-bottom: max(64px, 10vh);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: clamp(16px, 4vh, 32px);
   }
 
   .subtitle {
     color: ${props => props.theme.colors.primary.main};
-    font-weight: 500;
-    font-size: 1.1rem;
+    font-weight: ${props => props.theme.typography.fontWeight.medium};
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .title {
-    font-size: 3.5rem;
-    font-weight: 600;
-    line-height: 1.2;
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-weight: ${props => props.theme.typography.fontWeight.bold};
+    line-height: 1.1;
     margin: 0;
+    background: linear-gradient(90deg, 
+      ${props => props.theme.colors.primary.main}, 
+      ${props => props.theme.colors.secondary.main}
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5em;
   }
 
   .description {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    color: ${props => props.theme.colors.legacy.textSecondary};
-    max-width: 600px;
-    margin-bottom: 16px;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.6;
+    color: ${props => props.theme.colors.text.secondary.dark};
+    max-width: 650px;
+    margin: 0 auto 1.5rem;
   }
 `;
 
