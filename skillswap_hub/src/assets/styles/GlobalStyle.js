@@ -14,12 +14,12 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: ${props => props.theme.fonts.main};
+    font-family: ${props => props.theme.typography.fontFamily.main};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
-    background-color: ${props => props.theme.colors.dark};
-    color: ${props => props.theme.colors.textPrimary};
+    background-color: ${props => props.theme.colors.background.dark};
+    color: ${props => props.theme.colors.text.primary.dark};
   }
 
   /* Typography */
