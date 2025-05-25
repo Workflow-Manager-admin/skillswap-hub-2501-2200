@@ -33,8 +33,58 @@ const ProfilePage = ({ onLogout }) => {
   const [skillsCount, setSkillsCount] = useState(0);
   const [swapsCount, setSwapsCount] = useState(0);
   
-  // Define fetch functions first so they can be referenced in useEffect
-  // Functions moved above the useEffect to fix the "used before defined" error
+  // Fetch user skills
+  const fetchUserSkills = useCallback(async () => {
+    dispatch(fetchUserSkillsStart());
+    try {
+      // Here we would normally fetch from the API
+      // For demo, we'll create sample user skills
+      const mockUserSkills = [
+        {
+          id: '101',
+          title: 'JavaScript Programming',
+          description: 'Teaching modern JavaScript including ES6+, promises, async/await, and functional programming concepts.',
+          category: 'Technology',
+          experienceLevel: 'Advanced',
+          location: 'Remote',
+          owner: {
+            id: currentUser?.id || 'user1',
+            name: currentUser?.name || 'Current User',
+            avatarUrl: currentUser?.avatarUrl || 'https://i.pravatar.cc/150?img=12'
+          },
+          imageUrl: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+          createdAt: '2023-05-01T14:30:00Z'
+        },
+        {
+          id: '102',
+          title: 'Cooking Basics',
+          description: 'Learn essential cooking techniques and recipes. Perfect for beginners who want to start cooking delicious meals at home.',
+          category: 'Lifestyle',
+          experienceLevel: 'Beginner',
+          location: 'Local Only',
+          owner: {
+            id: currentUser?.id || 'user1',
+            name: currentUser?.name || 'Current User',
+            avatarUrl: currentUser?.avatarUrl || 'https://i.pravatar.cc/150?img=12'
+          },
+          imageUrl: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+          createdAt: '2023-04-15T09:45:00Z'
+        }
+      ];
+      
+      dispatch(fetchUserSkillsSuccess(mockUserSkills));
+      setSkillsCount(mockUserSkills.length);
+    } catch (error) {
+      dispatch(fetchUserSkillsFailure(error.message));
+    }
+  }, [dispatch, currentUser]);
+  
+  // Fetch user stats (completed swaps, etc)
+  const fetchUserStats = useCallback(async () => {
+    // Normally would fetch from API
+    // For demo, set mock data
+    setSwapsCount(5);
+  }, []);
   
   useEffect(() => {
     if (isAuthenticated && currentUser) {
@@ -42,8 +92,6 @@ const ProfilePage = ({ onLogout }) => {
       fetchUserStats();
     }
   }, [isAuthenticated, currentUser, fetchUserSkills, fetchUserStats]);
-  
-  // Functions moved above the useEffect to fix the "used before defined" error
   
   // Mock user data for demo
   const mockUser = currentUser || {
