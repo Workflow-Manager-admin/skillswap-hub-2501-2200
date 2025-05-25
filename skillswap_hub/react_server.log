@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:2464) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:2863) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:2464) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:2863) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -17,122 +17,4 @@ You can now view react-kavia in the browser.
 Note that the development build is not optimized.
 To create a production build, use npm run build.
 
-webpack compiled successfully
-Compiling...
-Failed to compile.
-
-Attempted import error: 'theme' is not exported from './assets/styles/theme' (imported as 'theme').
-ERROR in ./src/App.js 58:11-16
-export 'theme' (imported as 'theme') was not found in './assets/styles/theme' (possible exports: getBorderRadius, getBreakpoint, getColor, getFont, getFontSize, getFontWeight, getShadow, getSpacing, getTransition, getVariant, media)
-
-webpack compiled with 1 error
-Compiling...
-Failed to compile.
-
-Attempted import error: 'theme' is not exported from './assets/styles/theme' (imported as 'theme').
-ERROR in ./src/App.js 58:11-16
-export 'theme' (imported as 'theme') was not found in './assets/styles/theme' (possible exports: default, getBorderRadius, getBreakpoint, getColor, getFont, getFontSize, getFontWeight, getShadow, getSpacing, getTransition, getVariant, media)
-
-webpack compiled with 1 error
-Compiling...
-Failed to compile.
-
-Attempted import error: 'getBorderRadius' is not exported from '../../assets/styles/theme' (imported as 'getBorderRadius').
-ERROR in ./src/components/common/Button.js 37:18-33
-export 'getBorderRadius' (imported as 'getBorderRadius') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 38:16-29
-export 'getTransition' (imported as 'getTransition') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 59:23-31
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 60:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 67:23-31
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 68:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 76:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 77:27-35
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 84:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 29:18-33
-export 'getBorderRadius' (imported as 'getBorderRadius') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 44:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 58:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-webpack compiled with 12 errors
-Compiling...
-Failed to compile.
-
-Attempted import error: 'getBorderRadius' is not exported from '../../assets/styles/theme' (imported as 'getBorderRadius').
-ERROR in ./src/components/common/Button.js 37:18-33
-export 'getBorderRadius' (imported as 'getBorderRadius') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 38:16-29
-export 'getTransition' (imported as 'getTransition') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 59:23-31
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 60:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 67:23-31
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 68:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 76:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 77:27-35
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Button.js 84:13-21
-export 'getColor' (imported as 'getColor') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 29:18-33
-export 'getBorderRadius' (imported as 'getBorderRadius') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 44:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 58:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-webpack compiled with 12 errors
-Compiling...
-Failed to compile.
-
-Attempted import error: 'getBorderRadius' is not exported from '../../assets/styles/theme' (imported as 'getBorderRadius').
-ERROR in ./src/components/common/Card.js 29:18-33
-export 'getBorderRadius' (imported as 'getBorderRadius') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 44:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-ERROR in ./src/components/common/Card.js 58:17-26
-export 'getShadow' (imported as 'getShadow') was not found in '../../assets/styles/theme' (possible exports: default, media, theme)
-
-webpack compiled with 3 errors
-Compiling...
-Compiled successfully!
-webpack compiled successfully
-Compiling...
-Compiled successfully!
 webpack compiled successfully
