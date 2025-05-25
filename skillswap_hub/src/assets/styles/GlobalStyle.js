@@ -164,12 +164,12 @@ const GlobalStyle = createGlobalStyle`
 
   /* Navbar styles from App.css */
   .navbar {
-    background-color: ${props => props.theme.colors.dark};
+    background-color: ${props => props.theme.colors.legacy.dark};
     padding: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid ${props => props.theme.colors.borderColor};
+    border-bottom: 1px solid ${props => props.theme.colors.legacy.borderColor};
     position: fixed;
     top: 0;
     width: 100%;
@@ -186,7 +186,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .logo-symbol {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary.main};
   }
 
   /* App styles */
