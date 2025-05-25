@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PageLayout from '../components/layout/PageLayout';
@@ -16,7 +16,7 @@ import {
   selectAuthLoading,
   selectAuthError
 } from '../store/slices/authSlice';
-import authService from '../services/authService';
+// authService would be used in a real implementation with API calls
 
 // PUBLIC_INTERFACE
 /**
