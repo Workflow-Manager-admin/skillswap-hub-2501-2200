@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 // Theme configuration for SkillSwap Hub
 export const theme = {
   colors: {
@@ -13,6 +15,11 @@ export const theme = {
     skillBlue: '#2196F3',      // Skill category color
     skillGreen: '#8BC34A',     // Skill category color
     skillPurple: '#9C27B0',    // Skill category color
+    
+    // Adding text colors for direct use in styled-components
+    textPrimary: '#FFFFFF',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    borderColor: 'rgba(255, 255, 255, 0.1)'
   },
   fonts: {
     main: "'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif",
@@ -58,6 +65,29 @@ export const theme = {
     md: '768px',
     lg: '992px',
     xl: '1200px',
+  },
+  // Media queries for responsive design with styled-components
+  media: {
+    sm: (...args) => css`
+      @media (max-width: 576px) {
+        ${css(...args)}
+      }
+    `,
+    md: (...args) => css`
+      @media (min-width: 577px) and (max-width: 768px) {
+        ${css(...args)}
+      }
+    `,
+    lg: (...args) => css`
+      @media (min-width: 769px) and (max-width: 992px) {
+        ${css(...args)}
+      }
+    `,
+    xl: (...args) => css`
+      @media (min-width: 993px) {
+        ${css(...args)}
+      }
+    `,
   }
 };
 
@@ -70,3 +100,6 @@ export const getBorderRadius = (radius) => theme.borderRadius[radius] || radius;
 export const getShadow = (shadow) => theme.shadows[shadow] || shadow;
 export const getTransition = (transition) => theme.transitions[transition] || transition;
 export const getBreakpoint = (breakpoint) => theme.breakpoints[breakpoint] || breakpoint;
+
+// Media query helpers for styled-components
+export const media = theme.media;
