@@ -1,6 +1,106 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Button from './Button';
+import { Container, Flex } from './StyledElements';
+
+// Styled components for Navbar
+const NavbarWrapper = styled.nav`
+  background-color: ${props => props.theme.colors.background.default};
+  padding: ${props => props.theme.spacing.md};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid ${props => props.theme.colors.border.dark};
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: ${props => props.theme.zIndex.sticky};
+`;
+
+const Logo = styled.div`
+  font-size: 1.25rem;
+  font-weight: ${props => props.theme.typography.fontWeight.semibold};
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.spacing.xs};
+`;
+
+const LogoSymbol = styled.span`
+  color: ${props => props.theme.colors.primary.main};
+`;
+
+const LogoLink = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.text.primary.dark};
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.spacing.xs};
+`;
+
+const NavLink = styled(Link)`
+  color: ${props => props.theme.colors.text.secondary.dark};
+  text-decoration: none;
+  font-weight: ${props => props.theme.typography.fontWeight.medium};
+  transition: ${props => props.theme.transitions.default};
+  
+  &:hover {
+    color: ${props => props.theme.colors.primary.main};
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: ${props => props.theme.spacing.xs};
+  color: ${props => props.theme.colors.text.primary.dark};
+  font-size: ${props => props.theme.typography.fontSize.md};
+  display: none;
+  
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    display: inline-block;
+  }
+`;
+
+const DesktopNav = styled.div`
+  display: flex;
+  gap: ${props => props.theme.spacing.lg};
+  
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: ${props => props.theme.colors.background.default};
+  padding: ${props => props.theme.spacing.md};
+  z-index: ${props => props.theme.zIndex.dropdown};
+  border-top: 1px solid ${props => props.theme.colors.border.dark};
+  border-bottom: 1px solid ${props => props.theme.colors.border.dark};
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.spacing.md};
+  
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+const MobileNavLink = styled(Link)`
+  color: ${props => props.theme.colors.text.primary.dark};
+  text-decoration: none;
+  transition: ${props => props.theme.transitions.default};
+  
+  &:hover {
+    color: ${props => props.theme.colors.primary.main};
+  }
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -19,44 +119,44 @@ const Navbar = ({ isAuthenticated = false, onLogout }) => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-          <div className="logo">
-            <Link to="/" style={{ textDecoration: 'none', color: 'var(--text-color)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="logo-symbol">*</span> 
+    <NavbarWrapper>
+      <Container>
+        <Flex justify="space-between" align="center" style={{ width: '100%' }}>
+          <Logo>
+            <LogoLink to="/">
+              <LogoSymbol>*</LogoSymbol> 
               <span>SkillSwap Hub</span>
-            </Link>
-          </div>
+            </LogoLink>
+          </Logo>
 
           {/* Desktop Navigation */}
-          <div className="hidden-sm" style={{ display: 'flex', gap: '1.5rem' }}>
-            <Link to="/skills" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500 }}>
+          <DesktopNav>
+            <NavLink to="/skills">
               Browse Skills
-            </Link>
+            </NavLink>
             {isAuthenticated && (
               <>
-                <Link to="/my-skills" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500 }}>
+                <NavLink to="/my-skills">
                   My Skills
-                </Link>
-                <Link to="/requests" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500 }}>
+                </NavLink>
+                <NavLink to="/requests">
                   Requests
-                </Link>
-                <Link to="/profile" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500 }}>
+                </NavLink>
+                <NavLink to="/profile">
                   Profile
-                </Link>
+                </NavLink>
               </>
             )}
-          </div>
+          </DesktopNav>
 
           {/* Auth Buttons */}
-          <div className="hidden-sm">
+          <DesktopNav>
             {isAuthenticated ? (
               <Button variant="outlined" size="md" onClick={onLogout}>
                 Logout
               </Button>
             ) : (
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <Flex gap="sm">
                 <Link to="/login">
                   <Button variant="outlined" size="md">
                     Login
@@ -67,77 +167,46 @@ const Navbar = ({ isAuthenticated = false, onLogout }) => {
                     Register
                   </Button>
                 </Link>
-              </div>
+              </Flex>
             )}
-          </div>
+          </DesktopNav>
 
           {/* Mobile Menu Button */}
-          <div className="hidden-md hidden-lg" style={{ display: 'inline-block' }}>
-            <button 
-              onClick={toggleMenu} 
-              style={{ 
-                background: 'none', 
-                border: 'none', 
-                cursor: 'pointer', 
-                padding: '4px',
-                color: 'var(--text-color)'
-              }}
-            >
-              {menuOpen ? 'Close' : 'Menu'}
-            </button>
-          </div>
-        </div>
+          <MobileMenuButton onClick={toggleMenu}>
+            {menuOpen ? 'Close' : 'Menu'}
+          </MobileMenuButton>
+        </Flex>
         
         {/* Mobile Menu */}
         {menuOpen && (
-          <div 
-            className="hidden-md hidden-lg" 
-            style={{ 
-              position: 'absolute', 
-              top: '60px', 
-              left: 0, 
-              width: '100%', 
-              backgroundColor: 'var(--kavia-dark)', 
-              padding: '1rem',
-              zIndex: 99,
-              borderTop: '1px solid var(--border-color)',
-              borderBottom: '1px solid var(--border-color)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem'
-            }}
-          >
-            <Link 
+          <MobileMenu>
+            <MobileNavLink 
               to="/skills" 
               onClick={() => setMenuOpen(false)}
-              style={{ color: 'var(--text-color)', textDecoration: 'none' }}
             >
               Browse Skills
-            </Link>
+            </MobileNavLink>
             
             {isAuthenticated ? (
               <>
-                <Link 
+                <MobileNavLink 
                   to="/my-skills" 
                   onClick={() => setMenuOpen(false)}
-                  style={{ color: 'var(--text-color)', textDecoration: 'none' }}
                 >
                   My Skills
-                </Link>
-                <Link 
+                </MobileNavLink>
+                <MobileNavLink 
                   to="/requests" 
                   onClick={() => setMenuOpen(false)}
-                  style={{ color: 'var(--text-color)', textDecoration: 'none' }}
                 >
                   Requests
-                </Link>
-                <Link 
+                </MobileNavLink>
+                <MobileNavLink 
                   to="/profile" 
                   onClick={() => setMenuOpen(false)}
-                  style={{ color: 'var(--text-color)', textDecoration: 'none' }}
                 >
                   Profile
-                </Link>
+                </MobileNavLink>
                 <Button 
                   variant="outlined" 
                   size="md" 
@@ -150,23 +219,23 @@ const Navbar = ({ isAuthenticated = false, onLogout }) => {
                 </Button>
               </>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <Link to="/login" onClick={() => setMenuOpen(false)}>
+              <Flex direction="column" gap="sm">
+                <Link to="/login" onClick={() => setMenuOpen(false)} style={{ width: '100%' }}>
                   <Button variant="outlined" size="md" fullWidth>
                     Login
                   </Button>
                 </Link>
-                <Link to="/register" onClick={() => setMenuOpen(false)}>
+                <Link to="/register" onClick={() => setMenuOpen(false)} style={{ width: '100%' }}>
                   <Button variant="primary" size="md" fullWidth>
                     Register
                   </Button>
                 </Link>
-              </div>
+              </Flex>
             )}
-          </div>
+          </MobileMenu>
         )}
-      </div>
-    </nav>
+      </Container>
+    </NavbarWrapper>
   );
 };
 
