@@ -348,109 +348,11 @@ const theme = {
   }
 };
 
-// Helper functions to use theme values
-
-/**
- * Gets a color from the theme
- * @param {string} path - Path to color (e.g., 'primary.500', 'text.primary.dark')
- * @returns {string} - Color value
- */
-export const getColor = (path) => {
-  const parts = path.split('.');
-  let result = theme.colors;
-  
-  for (const part of parts) {
-    if (!result[part]) return path; // Return original if not found
-    result = result[part];
-  }
-  
-  return result;
-};
-
-/**
- * Gets font family
- * @param {string} type - Font family type ('main', 'heading', 'monospace')
- * @returns {string} - Font family value
- */
-export const getFont = (type = 'main') => {
-  return theme.typography.fontFamily[type] || theme.typography.fontFamily.main;
-};
-
-/**
- * Gets font size
- * @param {string} size - Size key ('xs', 'sm', 'md', etc.)
- * @returns {string} - Font size value
- */
-export const getFontSize = (size) => {
-  return theme.typography.fontSize[size] || size;
-};
-
-/**
- * Gets font weight
- * @param {string} weight - Weight key ('light', 'regular', 'medium', etc.)
- * @returns {number} - Font weight value
- */
-export const getFontWeight = (weight) => {
-  return theme.typography.fontWeight[weight] || weight;
-};
-
-/**
- * Gets spacing value
- * @param {string} space - Space key ('xs', 'sm', 'md', etc.)
- * @returns {string} - Spacing value
- */
-export const getSpacing = (space) => {
-  return theme.spacing[space] || space;
-};
-
-/**
- * Gets border radius value
- * @param {string} radius - Radius key ('sm', 'md', 'lg', etc.)
- * @returns {string} - Border radius value
- */
-export const getBorderRadius = (radius) => {
-  return theme.borderRadius[radius] || radius;
-};
-
-/**
- * Gets shadow value
- * @param {string} shadow - Shadow key ('sm', 'md', 'lg', etc.)
- * @returns {string} - Shadow value
- */
-export const getShadow = (shadow) => {
-  return theme.shadows[shadow] || shadow;
-};
-
-/**
- * Gets transition value
- * @param {string} transition - Transition key ('default', 'fast', 'slow', etc.)
- * @returns {string} - Transition value
- */
-export const getTransition = (transition) => {
-  return theme.transitions[transition] || transition;
-};
-
-/**
- * Gets breakpoint value
- * @param {string} breakpoint - Breakpoint key ('sm', 'md', 'lg', etc.)
- * @returns {string} - Breakpoint value
- */
-export const getBreakpoint = (breakpoint) => {
-  return theme.breakpoints[breakpoint] || breakpoint;
-};
-
-/**
- * Gets component variant styles
- * @param {string} component - Component name ('button', 'card', etc.)
- * @param {string} variant - Variant name ('primary', 'outlined', etc.)
- * @returns {Object} - Variant styles
- */
-export const getVariant = (component, variant) => {
-  return theme.variants?.[component]?.[variant] || {};
-};
-
-// Media query helpers for styled-components
-export const media = theme.media;
-
-// Default export for easier importing
+// Export the theme as default for easier importing
 export default theme;
+
+// Also export as named export for backward compatibility
+export { theme };
+
+// Export media query helpers directly from theme
+export const { media } = theme;
