@@ -77,12 +77,12 @@ const GlobalStyle = createGlobalStyle`
 
   /* Light/Dark mode classes - maintained for backwards compatibility */
   body.dark-mode {
-    background-color: ${props => props.theme.colors.dark};
-    color: ${props => props.theme.colors.light};
+    background-color: ${props => props.theme.colors.legacy.dark};
+    color: ${props => props.theme.colors.legacy.light};
   }
 
   body.light-mode {
-    background-color: ${props => props.theme.colors.lightGray};
+    background-color: ${props => props.theme.colors.legacy.lightGray};
     color: #333;
   }
 
