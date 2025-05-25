@@ -2,12 +2,13 @@ import { css } from 'styled-components';
 
 /**
  * Theme configuration for SkillSwap Hub
+ * 
  * A comprehensive design system defining colors, typography, spacing,
  * and other design tokens for consistent styling across the application
  */
 const theme = {
   colors: {
-    // Primary brand colors
+    // Primary brand colors with varying shades
     primary: {
       50: '#FFF3E0',  // Lightest
       100: '#FFE0B2',
@@ -19,22 +20,26 @@ const theme = {
       700: '#F57C00',
       800: '#EF6C00',
       900: '#E65100',  // Darkest
+      main: '#FF9800',  // Default shade (alias to 500 for convenience)
     },
-    // Secondary color palette
+    
+    // Secondary color palette with varying shades
     secondary: {
-      50: '#E3F2FD',  // Lightest
-      100: '#BBDEFB',
-      200: '#90CAF9',
-      300: '#64B5F6',
-      400: '#42A5F5',
-      500: '#2196F3',  // Base blue
-      600: '#1E88E5',
-      700: '#1976D2',
-      800: '#1565C0',
-      900: '#0D47A1',  // Darkest
+      50: '#E1F5FE',  // Lightest
+      100: '#B3E5FC',
+      200: '#81D4FA',
+      300: '#4FC3F7',
+      400: '#29B6F6',
+      500: '#03A9F4',  // Base blue
+      600: '#039BE5',
+      700: '#0288D1',
+      800: '#0277BD',
+      900: '#01579B',  // Darkest
+      main: '#03A9F4',  // Default shade
     },
-    // Accent color for highlights
-    accent: {
+    
+    // Tertiary/accent color for additional highlights
+    tertiary: {
       50: '#E8F5E9',  // Lightest
       100: '#C8E6C9',
       200: '#A5D6A7',
@@ -45,8 +50,10 @@ const theme = {
       700: '#388E3C',
       800: '#2E7D32',
       900: '#1B5E20',  // Darkest
+      main: '#4CAF50',  // Default shade
     },
-    // Neutrals for backgrounds and text
+    
+    // Neutral colors for backgrounds, text, etc.
     neutral: {
       50: '#FAFAFA',   // Lightest - nearly white
       100: '#F5F5F5',
@@ -58,80 +65,113 @@ const theme = {
       700: '#616161',
       800: '#424242',
       900: '#212121',  // Darkest - nearly black
+      white: '#FFFFFF',
+      black: '#000000',
     },
-    // Semantic colors for feedback
-    success: '#4CAF50',   // Success actions and positive feedback
-    error: '#F44336',     // Error messages and destructive actions
-    warning: '#FF9800',   // Warnings and cautionary messages
-    info: '#2196F3',      // Informational messages
     
-    // Background and surface colors
+    // Background colors for different surfaces
     background: {
-      dark: '#121212',      // Dark theme main background
-      light: '#FFFFFF',     // Light theme main background
-      paper: {
-        dark: '#1E1E1E',    // Dark theme surface/card background
-        light: '#FFFFFF',   // Light theme surface/card background
-      }
+      default: '#121212',   // Default dark background
+      paper: '#1E1E1E',     // Cards and elevated surfaces
+      light: '#FFFFFF',     // Light mode background
+      elevation: {
+        1: '#1E1E1E',
+        2: '#232323',
+        3: '#252525',
+        4: '#272727',
+        8: '#2E2E2E',
+        16: '#353535',
+        24: '#383838',
+      },
     },
     
-    // Text colors
+    // Text colors with variants for different backgrounds
     text: {
       primary: {
-        dark: 'rgba(255, 255, 255, 0.87)',  // Primary text on dark background
-        light: 'rgba(0, 0, 0, 0.87)',       // Primary text on light background
+        dark: 'rgba(255, 255, 255, 0.87)',  // White text on dark bg
+        light: 'rgba(0, 0, 0, 0.87)',      // Dark text on light bg
       },
       secondary: {
-        dark: 'rgba(255, 255, 255, 0.6)',   // Secondary text on dark background
-        light: 'rgba(0, 0, 0, 0.6)',        // Secondary text on light background
+        dark: 'rgba(255, 255, 255, 0.6)',   // Slightly faded white text
+        light: 'rgba(0, 0, 0, 0.6)',        // Slightly faded dark text
       },
       disabled: {
-        dark: 'rgba(255, 255, 255, 0.38)',  // Disabled text on dark background
-        light: 'rgba(0, 0, 0, 0.38)',       // Disabled text on light background
+        dark: 'rgba(255, 255, 255, 0.38)',  // Very faded white text
+        light: 'rgba(0, 0, 0, 0.38)',       // Very faded dark text
+      },
+    },
+    
+    // Feedback/status colors for notifications and alerts
+    feedback: {
+      success: {
+        main: '#4CAF50',  // Green
+        light: '#A5D6A7',
+        dark: '#2E7D32',
+        contrastText: '#FFFFFF',
+      },
+      warning: {
+        main: '#FF9800',  // Orange
+        light: '#FFCC80',
+        dark: '#EF6C00',
+        contrastText: '#000000',
+      },
+      error: {
+        main: '#F44336',  // Red
+        light: '#FFCDD2',
+        dark: '#C62828',
+        contrastText: '#FFFFFF',
+      },
+      info: {
+        main: '#2196F3',  // Blue
+        light: '#90CAF9',
+        dark: '#0D47A1',
+        contrastText: '#FFFFFF',
       },
     },
     
     // Border colors
     border: {
-      dark: 'rgba(255, 255, 255, 0.12)',    // Border on dark background
-      light: 'rgba(0, 0, 0, 0.12)',         // Border on light background
+      dark: 'rgba(255, 255, 255, 0.12)',
+      light: 'rgba(0, 0, 0, 0.12)',
     },
     
-    // Skill categories - unique colors for skill types
+    // Skill type-specific colors
     skills: {
-      technology: '#2196F3',   // Blue for technology skills
-      creative: '#9C27B0',     // Purple for creative skills
-      business: '#FF9800',     // Orange for business skills
-      education: '#4CAF50',    // Green for education skills
-      lifestyle: '#FF5722',    // Deep orange for lifestyle skills
-      other: '#607D8B',        // Blue gray for other categories
+      technology: '#2196F3',   // Blue
+      creative: '#9C27B0',     // Purple
+      business: '#FF9800',     // Orange
+      education: '#4CAF50',    // Green
+      lifestyle: '#FF5722',    // Deep orange
+      other: '#607D8B',        // Blue gray
     },
     
-    // Legacy color naming for backward compatibility
-    // Don't use these for new components
+    // Legacy color names for backward compatibility
+    // These help maintain compatibility with existing components
     legacy: {
       primary: '#FF9800',           // Main brand color (orange)
+      secondary: '#03A9F4',         // Secondary color (blue)
       dark: '#121212',              // Dark background
       light: '#FFFFFF',             // Light text
-      lightGray: '#F5F5F5',         // Light background
-      mediumGray: '#E0E0E0',        // Borders, dividers
-      darkGray: '#757575',          // Secondary text
+      lightGray: '#F5F5F5',
+      mediumGray: '#E0E0E0',
+      darkGray: '#757575',
       textPrimary: '#FFFFFF',
       textSecondary: 'rgba(255, 255, 255, 0.6)',
       borderColor: 'rgba(255, 255, 255, 0.12)',
-      skillBlue: '#2196F3',
-      skillGreen: '#4CAF50',
-      skillPurple: '#9C27B0',
+      success: '#4CAF50',
+      warning: '#FF9800',
+      error: '#F44336',
+      info: '#2196F3',
     }
   },
   
-  // Typography settings
+  // Typography system
   typography: {
     // Font families
     fontFamily: {
       main: "'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif",
       heading: "'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif",
-      monospace: "'Roboto Mono', 'Consolas', monospace"
+      monospace: "'Roboto Mono', 'Consolas', monospace",
     },
     
     // Font sizes - using rem for accessibility
@@ -183,10 +223,10 @@ const theme = {
       small: '0.75em',
       normal: '1em',
       large: '1.5em',
-    }
+    },
   },
   
-  // Spacing scale - multiples of 4px for consistency
+  // Spacing scale - consistency through multiples of 4
   spacing: {
     none: '0',
     '2xs': '0.125rem',  // 2px
@@ -238,7 +278,7 @@ const theme = {
     easeInOut: 'all 0.3s ease-in-out',
   },
   
-  // Z-index values
+  // Z-index values for controlling stacking order
   zIndex: {
     hide: -1,
     base: 0,
@@ -301,7 +341,7 @@ const theme = {
     `,
   },
   
-  // Common component variants
+  // Common component variants for consistent styling
   variants: {
     // Button variants
     button: {
@@ -311,9 +351,14 @@ const theme = {
         '&:hover': { backgroundColor: '#F57C00' },
       },
       secondary: {
-        backgroundColor: '#2196F3',
+        backgroundColor: '#03A9F4',
         color: '#FFFFFF',
-        '&:hover': { backgroundColor: '#1976D2' },
+        '&:hover': { backgroundColor: '#0288D1' },
+      },
+      tertiary: {
+        backgroundColor: '#4CAF50',
+        color: '#FFFFFF',
+        '&:hover': { backgroundColor: '#388E3C' },
       },
       outlined: {
         backgroundColor: 'transparent',
@@ -344,7 +389,46 @@ const theme = {
         borderRadius: '0.5rem',
         boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
       },
-    }
+    },
+    
+    // Input variants
+    input: {
+      default: {
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        border: '1px solid rgba(255, 255, 255, 0.12)',
+        borderRadius: '0.25rem',
+        color: 'rgba(255, 255, 255, 0.87)',
+      },
+      filled: {
+        backgroundColor: 'rgba(255, 255, 255, 0.09)',
+        border: 'none',
+        borderRadius: '0.25rem',
+        color: 'rgba(255, 255, 255, 0.87)',
+      },
+      outlined: {
+        backgroundColor: 'transparent',
+        border: '1px solid rgba(255, 255, 255, 0.23)',
+        borderRadius: '0.25rem',
+        color: 'rgba(255, 255, 255, 0.87)',
+      },
+    },
+    
+    // Badge variants
+    badge: {
+      default: {
+        backgroundColor: '#FF9800',
+        color: '#FFFFFF',
+        borderRadius: '9999px',
+        padding: '0.25rem 0.75rem',
+      },
+      dot: {
+        height: '8px',
+        width: '8px',
+        backgroundColor: '#FF9800',
+        borderRadius: '50%',
+        display: 'inline-block',
+      },
+    },
   }
 };
 
