@@ -49,15 +49,58 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
   }
 
-  /* Typography */
+  /* A11y - Remove animation for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Selection style - customize text highlighting */
+  ::selection {
+    background-color: ${props => props.theme.colors.primary[200]};
+    color: ${props => props.theme.colors.neutral[900]};
+  }
+  
+  /* Custom scrollbar for modern browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: ${props => props.theme.colors.background.default};
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.colors.primary[700]};
+    border-radius: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${props => props.theme.colors.primary[600]};
+  }
+  
+  /* Improved typography with better vertical rhythm */
   h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
     margin-bottom: 0.5em;
-    font-weight: 600;
+    font-weight: ${props => props.theme.typography.fontWeight.semibold};
     line-height: 1.2;
+    color: ${props => props.theme.colors.text.primary.dark};
+    letter-spacing: -0.015em;
   }
 
   h1 {
     font-size: ${props => props.theme.typography.fontSize['4xl']};
+    margin-bottom: 0.75em;
   }
 
   h2 {
@@ -81,17 +124,35 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 70ch; /* Limit line length for better readability */
   }
 
+  /* Improved links with focus states for better accessibility */
   a {
     color: ${props => props.theme.colors.primary.main};
     text-decoration: none;
     transition: ${props => props.theme.transitions.default};
+    position: relative;
   }
 
   a:hover {
+    color: ${props => props.theme.colors.primary[700]};
     text-decoration: underline;
+  }
+  
+  a:focus {
+    outline: 2px solid ${props => props.theme.colors.primary[400]};
+    outline-offset: 2px;
+  }
+  
+  /* Focus styles for interactive elements */
+  button:focus, 
+  input:focus, 
+  select:focus, 
+  textarea:focus {
+    outline: 2px solid ${props => props.theme.colors.primary[400]};
+    outline-offset: 2px;
   }
 
   /* Container */
