@@ -27,3 +27,10 @@ export 'theme' (imported as 'theme') was not found in './assets/styles/theme' (p
 
 webpack compiled with 1 error
 Compiling...
+Failed to compile.
+
+Attempted import error: 'theme' is not exported from './assets/styles/theme' (imported as 'theme').
+ERROR in ./src/App.js 58:11-16
+export 'theme' (imported as 'theme') was not found in './assets/styles/theme' (possible exports: default, getBorderRadius, getBreakpoint, getColor, getFont, getFontSize, getFontWeight, getShadow, getSpacing, getTransition, getVariant, media)
+
+webpack compiled with 1 error
