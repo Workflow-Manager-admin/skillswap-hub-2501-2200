@@ -1,5 +1,37 @@
 import React from 'react';
-import { getBorderRadius, getShadow } from '../../assets/styles/ThemeUtils';
+import styled from 'styled-components';
+import { getBorderRadius, getShadow, getVariant } from '../../assets/styles/ThemeUtils';
+
+// Styled card component
+const StyledCard = styled.div`
+  border-radius: ${props => getBorderRadius('md')};
+  padding: ${props => props.theme.spacing.md};
+  transition: ${props => props.theme.transitions.default};
+  
+  /* Apply variant styles */
+  background-color: ${props =>
+    props.variant === 'outlined'
+      ? 'transparent'
+      : props.variant === 'elevated'
+        ? props.theme.colors.background.paper
+        : props.theme.colors.background.paper};
+        
+  border: ${props =>
+    props.variant === 'outlined'
+      ? `1px solid ${props.theme.colors.border.dark}`
+      : 'none'};
+  
+  box-shadow: ${props =>
+    props.variant === 'elevated'
+      ? getShadow('md')
+      : 'none'};
+      
+  /* Hover effects when hoverable */
+  &:hover {
+    transform: ${props => props.hoverable ? 'translateY(-4px)' : 'none'};
+    box-shadow: ${props => props.hoverable ? getShadow('lg') : props.variant === 'elevated' ? getShadow('md') : 'none'};
+  }
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -19,53 +51,15 @@ const Card = ({
   style = {},
   ...props 
 }) => {
-  const baseStyle = {
-    borderRadius: getBorderRadius('md'),
-    padding: '1rem',
-    transition: 'all 0.3s ease',
-  };
-
-  const variantStyles = {
-    default: {
-      backgroundColor: '#fff',
-      border: '1px solid var(--medium-gray)',
-    },
-    outlined: {
-      backgroundColor: 'transparent',
-      border: '1px solid var(--medium-gray)',
-    },
-    elevated: {
-      backgroundColor: '#fff',
-      boxShadow: getShadow('md'),
-      border: 'none',
-    },
-  };
-
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
-
-  // Combine all styles
-  const combinedStyle = {
-    ...baseStyle,
-    ...variantStyles[variant],
-    ...(hoverable && isHovered ? {
-      transform: 'translateY(-4px)',
-      boxShadow: getShadow('lg'),
-    } : {}),
-    ...style,
-  };
-
   return (
-    <div
-      style={combinedStyle}
-      onMouseEnter={hoverable ? handleMouseEnter : undefined}
-      onMouseLeave={hoverable ? handleMouseLeave : undefined}
+    <StyledCard
+      variant={variant}
+      hoverable={hoverable}
+      style={style}
       {...props}
     >
       {children}
-    </div>
+    </StyledCard>
   );
 };
 
