@@ -1,5 +1,79 @@
 import React from 'react';
-import { getColor, getBorderRadius, getTransition } from '../../assets/styles/ThemeUtils';
+import styled, { css } from 'styled-components';
+import { getColor, getBorderRadius, getTransition, getVariant } from '../../assets/styles/ThemeUtils';
+
+// Define button styles with styled-components
+const StyledButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: ${props => props.theme.typography.fontWeight.medium};
+  border-radius: ${props => getBorderRadius('md')};
+  transition: ${props => getTransition('default')};
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  opacity: ${props => props.disabled ? 0.6 : 1};
+  width: ${props => props.fullWidth ? '100%' : 'auto'};
+  
+  /* Size variants */
+  ${props => props.size === 'sm' && css`
+    padding: ${props.theme.spacing.xs} ${props.theme.spacing.sm};
+    font-size: ${props.theme.typography.fontSize.sm};
+  `}
+  
+  ${props => (!props.size || props.size === 'md') && css`
+    padding: ${props.theme.spacing.sm} ${props.theme.spacing.md};
+    font-size: ${props.theme.typography.fontSize.md};
+  `}
+  
+  ${props => props.size === 'lg' && css`
+    padding: ${props.theme.spacing.sm} ${props.theme.spacing.lg};
+    font-size: ${props.theme.typography.fontSize.lg};
+  `}
+  
+  /* Style variants */
+  ${props => (!props.variant || props.variant === 'primary') && css`
+    background-color: ${props.theme.colors.primary.main};
+    color: ${props.theme.colors.neutral.white};
+    border: none;
+    
+    &:hover:not(:disabled) {
+      background-color: ${props.theme.colors.primary[700]};
+    }
+  `}
+  
+  ${props => props.variant === 'secondary' && css`
+    background-color: ${props.theme.colors.secondary.main};
+    color: ${props.theme.colors.neutral.white};
+    border: none;
+    
+    &:hover:not(:disabled) {
+      background-color: ${props.theme.colors.secondary[700]};
+    }
+  `}
+  
+  ${props => props.variant === 'outlined' && css`
+    background-color: transparent;
+    color: ${props.theme.colors.primary.main};
+    border: 1px solid ${props.theme.colors.primary.main};
+    
+    &:hover:not(:disabled) {
+      background-color: ${props.theme.colors.primary[50]};
+    }
+  `}
+  
+  ${props => props.variant === 'text' && css`
+    background-color: transparent;
+    color: ${props.theme.colors.primary.main};
+    border: none;
+    
+    &:hover:not(:disabled) {
+      background-color: ${props.theme.colors.primary[50]};
+    }
+  `}
+  
+  /* Additional styles */
+  ${props => props.style && css(props.style)}
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -23,99 +97,17 @@ const Button = ({
   children,
   ...props 
 }) => {
-  const baseStyle = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontWeight: 500,
-    borderRadius: getBorderRadius('md'),
-    transition: getTransition('default'),
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    opacity: disabled ? 0.6 : 1,
-    width: fullWidth ? '100%' : 'auto',
-  };
-
-  const sizeStyles = {
-    sm: { padding: '8px 12px', fontSize: '0.875rem' },
-    md: { padding: '12px 16px', fontSize: '1rem' },
-    lg: { padding: '14px 20px', fontSize: '1.125rem' },
-  };
-
-  const variantStyles = {
-    primary: {
-      backgroundColor: getColor('primary'),
-      color: getColor('light'),
-      border: 'none',
-      '&:hover': {
-        backgroundColor: '#ff8b4d',
-      },
-    },
-    secondary: {
-      backgroundColor: getColor('dark'),
-      color: getColor('light'),
-      border: 'none',
-      '&:hover': {
-        backgroundColor: '#333',
-      },
-    },
-    outlined: {
-      backgroundColor: 'transparent',
-      color: getColor('primary'),
-      border: `1px solid ${getColor('primary')}`,
-      '&:hover': {
-        backgroundColor: 'rgba(232, 122, 65, 0.1)',
-      },
-    },
-    text: {
-      backgroundColor: 'transparent',
-      color: getColor('primary'),
-      border: 'none',
-      '&:hover': {
-        backgroundColor: 'rgba(232, 122, 65, 0.1)',
-      },
-    },
-  };
-
-  // Combine all styles
-  const combinedStyle = {
-    ...baseStyle,
-    ...sizeStyles[size],
-    ...variantStyles[variant],
-  };
-
-  // Handle hover styles manually since inline styles don't support pseudo-classes
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  const handleMouseEnter = () => {
-    if (!disabled) setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  // Apply hover styles
-  if (isHovered) {
-    if (variant === 'primary') {
-      combinedStyle.backgroundColor = '#ff8b4d';
-    } else if (variant === 'secondary') {
-      combinedStyle.backgroundColor = '#333';
-    } else if (variant === 'outlined' || variant === 'text') {
-      combinedStyle.backgroundColor = 'rgba(232, 122, 65, 0.1)';
-    }
-  }
-
   return (
-    <button
-      style={combinedStyle}
-      onClick={disabled ? undefined : onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+    <StyledButton
+      variant={variant}
+      size={size}
+      fullWidth={fullWidth}
       disabled={disabled}
+      onClick={disabled ? undefined : onClick}
       {...props}
     >
       {children}
-    </button>
+    </StyledButton>
   );
 };
 
