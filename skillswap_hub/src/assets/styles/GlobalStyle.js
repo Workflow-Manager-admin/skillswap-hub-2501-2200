@@ -155,12 +155,37 @@ const GlobalStyle = createGlobalStyle`
     outline-offset: 2px;
   }
 
-  /* Container */
+  /* Container with responsive padding */
   .container {
     width: 100%;
     max-width: 1200px;
-    padding: 0 1rem;
+    padding: 0 clamp(1rem, 5vw, 2rem);
     margin: 0 auto;
+  }
+  
+  /* Basic button reset */
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  /* List styles reset */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Form element normalization */
+  input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+  
+  /* Table normalization */
+  table {
+    border-collapse: collapse;
+    width: 100%;
   }
 
   /* Light/Dark mode classes - maintained for backwards compatibility */
