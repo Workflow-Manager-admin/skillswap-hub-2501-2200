@@ -38,10 +38,10 @@ const ProfilePage = ({ onLogout }) => {
       fetchUserSkills();
       fetchUserStats();
     }
-  }, [isAuthenticated, currentUser]);
+  }, [isAuthenticated, currentUser, fetchUserSkills, fetchUserStats]);
   
   // Fetch user skills
-  const fetchUserSkills = async () => {
+  const fetchUserSkills = useCallback(async () => {
     dispatch(fetchUserSkillsStart());
     try {
       // Here we would normally fetch from the API
@@ -84,14 +84,14 @@ const ProfilePage = ({ onLogout }) => {
     } catch (error) {
       dispatch(fetchUserSkillsFailure(error.message));
     }
-  };
+  }, [dispatch, currentUser]);
   
   // Fetch user stats (completed swaps, etc)
-  const fetchUserStats = async () => {
+  const fetchUserStats = useCallback(async () => {
     // Normally would fetch from API
     // For demo, set mock data
     setSwapsCount(5);
-  };
+  }, []);
   
   // Mock user data for demo
   const mockUser = currentUser || {
