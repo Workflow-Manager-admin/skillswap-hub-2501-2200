@@ -1,6 +1,44 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Button from '../common/Button';
+import { 
+  Input, 
+  Label, 
+  ErrorMessage, 
+  Flex, 
+  Text 
+} from '../common/StyledElements';
+
+// Styled components for LoginForm
+const FormTitle = styled.h2`
+  margin-bottom: ${props => props.theme.spacing.lg};
+  text-align: center;
+  font-weight: ${props => props.theme.typography.fontWeight.semibold};
+  color: ${props => props.theme.colors.text.primary.dark};
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: ${props => props.theme.spacing.md};
+`;
+
+const ErrorAlert = styled.div`
+  padding: ${props => props.theme.spacing.sm};
+  background-color: ${props => `${props.theme.colors.feedback.error.light}33`}; // 20% opacity
+  color: ${props => props.theme.colors.feedback.error.main};
+  border-radius: ${props => props.theme.borderRadius.sm};
+  margin-bottom: ${props => props.theme.spacing.md};
+`;
+
+const FormLink = styled(Link)`
+  font-size: ${props => props.theme.typography.fontSize.sm};
+  color: ${props => props.theme.colors.primary.main};
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -71,33 +109,20 @@ const LoginForm = ({ onSubmit, error, loading = false }) => {
 
   return (
     <div>
-      <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Log In to Your Account</h2>
+      <FormTitle>Log In to Your Account</FormTitle>
       
       {error && (
-        <div style={{ 
-          padding: '0.75rem', 
-          backgroundColor: 'rgba(244, 67, 54, 0.1)', 
-          color: 'var(--error)', 
-          borderRadius: '4px',
-          marginBottom: '1rem'
-        }}>
+        <ErrorAlert>
           {error}
-        </div>
+        </ErrorAlert>
       )}
       
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1.25rem' }}>
-          <label 
-            htmlFor="email"
-            style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem',
-              fontWeight: 500
-            }}
-          >
+        <FormGroup>
+          <Label htmlFor="email">
             Email Address
-          </label>
-          <input
+          </Label>
+          <Input
             id="email"
             type="email"
             name="email"
@@ -105,42 +130,25 @@ const LoginForm = ({ onSubmit, error, loading = false }) => {
             onChange={handleChange}
             placeholder="Enter your email"
             autoComplete="email"
-            style={{ 
-              width: '100%', 
-              padding: '0.75rem',
-              fontSize: '1rem',
-              border: `1px solid ${formErrors.email ? 'var(--error)' : 'var(--medium-gray)'}`,
-              borderRadius: '4px',
-            }}
+            error={!!formErrors.email}
           />
           {formErrors.email && (
-            <p style={{ color: 'var(--error)', marginTop: '0.25rem', fontSize: '0.875rem' }}>
+            <ErrorMessage>
               {formErrors.email}
-            </p>
+            </ErrorMessage>
           )}
-        </div>
+        </FormGroup>
         
-        <div style={{ marginBottom: '1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-            <label 
-              htmlFor="password"
-              style={{ 
-                fontWeight: 500
-              }}
-            >
+        <FormGroup>
+          <Flex justify="space-between" align="center" style={{ marginBottom: '0.5rem' }}>
+            <Label htmlFor="password" style={{ margin: 0 }}>
               Password
-            </label>
-            <Link 
-              to="/forgot-password" 
-              style={{ 
-                fontSize: '0.875rem',
-                color: 'var(--kavia-orange)'
-              }}
-            >
+            </Label>
+            <FormLink to="/forgot-password">
               Forgot password?
-            </Link>
-          </div>
-          <input
+            </FormLink>
+          </Flex>
+          <Input
             id="password"
             type="password"
             name="password"
@@ -148,20 +156,14 @@ const LoginForm = ({ onSubmit, error, loading = false }) => {
             onChange={handleChange}
             placeholder="Enter your password"
             autoComplete="current-password"
-            style={{ 
-              width: '100%', 
-              padding: '0.75rem',
-              fontSize: '1rem',
-              border: `1px solid ${formErrors.password ? 'var(--error)' : 'var(--medium-gray)'}`,
-              borderRadius: '4px',
-            }}
+            error={!!formErrors.password}
           />
           {formErrors.password && (
-            <p style={{ color: 'var(--error)', marginTop: '0.25rem', fontSize: '0.875rem' }}>
+            <ErrorMessage>
               {formErrors.password}
-            </p>
+            </ErrorMessage>
           )}
-        </div>
+        </FormGroup>
         
         <Button
           type="submit"
@@ -173,12 +175,12 @@ const LoginForm = ({ onSubmit, error, loading = false }) => {
           {loading ? 'Logging in...' : 'Log In'}
         </Button>
         
-        <p style={{ textAlign: 'center', fontSize: '0.875rem' }}>
+        <Text align="center" size="sm">
           Don't have an account?{' '}
-          <Link to="/register" style={{ color: 'var(--kavia-orange)' }}>
+          <FormLink to="/register">
             Create an account
-          </Link>
-        </p>
+          </FormLink>
+        </Text>
       </form>
     </div>
   );
