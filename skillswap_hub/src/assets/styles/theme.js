@@ -5,7 +5,7 @@ import { css } from 'styled-components';
  * A comprehensive design system defining colors, typography, spacing,
  * and other design tokens for consistent styling across the application
  */
-export const theme = {
+const theme = {
   colors: {
     // Primary brand colors
     primary: {
@@ -451,3 +451,6 @@ export const getVariant = (component, variant) => {
 
 // Media query helpers for styled-components
 export const media = theme.media;
+
+// Default export for easier importing
+export default theme;
