@@ -30,27 +30,27 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: ${props => props.theme.fontSizes['4xl']};
+    font-size: ${props => props.theme.typography.fontSize['4xl']};
   }
 
   h2 {
-    font-size: ${props => props.theme.fontSizes['3xl']};
+    font-size: ${props => props.theme.typography.fontSize['3xl']};
   }
 
   h3 {
-    font-size: ${props => props.theme.fontSizes['2xl']};
+    font-size: ${props => props.theme.typography.fontSize['2xl']};
   }
 
   h4 {
-    font-size: ${props => props.theme.fontSizes.xl};
+    font-size: ${props => props.theme.typography.fontSize.xl};
   }
 
   h5 {
-    font-size: ${props => props.theme.fontSizes.lg};
+    font-size: ${props => props.theme.typography.fontSize.lg};
   }
 
   h6 {
-    font-size: ${props => props.theme.fontSizes.md};
+    font-size: ${props => props.theme.typography.fontSize.md};
   }
 
   p {
@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary.main};
     text-decoration: none;
     transition: ${props => props.theme.transitions.default};
   }
