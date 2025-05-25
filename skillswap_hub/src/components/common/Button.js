@@ -1,5 +1,5 @@
 import React from 'react';
-import { getColor, getBorderRadius, getTransition } from '../../assets/styles/theme';
+import { getColor, getBorderRadius, getTransition } from '../../assets/styles/ThemeUtils';
 
 // PUBLIC_INTERFACE
 /**

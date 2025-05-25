@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBorderRadius, getShadow } from '../../assets/styles/theme';
+import { getBorderRadius, getShadow } from '../../assets/styles/ThemeUtils';
 
 // PUBLIC_INTERFACE
 /**
