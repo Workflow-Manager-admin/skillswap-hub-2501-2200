@@ -2,24 +2,51 @@ import { createGlobalStyle } from 'styled-components';
 
 // Global styles for the entire application using styled-components
 const GlobalStyle = createGlobalStyle`
-  /* Import fonts */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  /* Font preloading for performance */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap&display=swap');
 
-  /* Global reset and base styles */
-  * {
+  /* Modern CSS Reset - more comprehensive than just setting margin/padding to 0 */
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-
-  body {
+  
+  /* Remove default margin */
+  body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
     margin: 0;
+  }
+  
+  /* Set core root defaults */
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+  
+  /* Set core body defaults */
+  body {
+    min-height: 100vh;
     font-family: ${props => props.theme.typography.fontFamily.main};
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    line-height: 1.5;
     background-color: ${props => props.theme.colors.background.default};
     color: ${props => props.theme.colors.text.primary.dark};
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* Remove built-in form typography styles */
+  input, button, textarea, select {
+    font: inherit;
   }
 
   /* Typography */
