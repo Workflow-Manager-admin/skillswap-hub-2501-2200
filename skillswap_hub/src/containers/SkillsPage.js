@@ -35,14 +35,8 @@ const SkillsPage = ({ onLogout }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortOption, setSortOption] = useState('newest');
   
-  // Fetch skills and categories on component mount
-  useEffect(() => {
-    fetchSkills();
-    fetchCategories();
-  }, []);
-  
   // Fetch all skills
-  const fetchSkills = async () => {
+  const fetchSkills = useCallback(async () => {
     dispatch(fetchSkillsStart());
     try {
       // Here we would normally fetch from the API
@@ -52,10 +46,10 @@ const SkillsPage = ({ onLogout }) => {
     } catch (error) {
       dispatch(fetchSkillsFailure(error.message));
     }
-  };
+  }, [dispatch]);
   
   // Fetch categories
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     dispatch(fetchCategoriesStart());
     try {
       // Mock categories
@@ -66,7 +60,13 @@ const SkillsPage = ({ onLogout }) => {
     } catch (error) {
       dispatch(fetchCategoriesFailure(error.message));
     }
-  };
+  }, [dispatch]);
+  
+  // Fetch skills and categories on component mount
+  useEffect(() => {
+    fetchSkills();
+    fetchCategories();
+  }, [fetchSkills, fetchCategories]);
   
   // Generate mock skills for demonstration
   const generateMockSkills = () => {
