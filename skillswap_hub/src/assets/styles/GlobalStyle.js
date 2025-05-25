@@ -222,7 +222,7 @@ const GlobalStyle = createGlobalStyle`
   .description {
     font-size: 1.1rem;
     line-height: 1.5;
-    color: ${props => props.theme.colors.textSecondary};
+    color: ${props => props.theme.colors.legacy.textSecondary};
     max-width: 600px;
     margin-bottom: 16px;
   }
