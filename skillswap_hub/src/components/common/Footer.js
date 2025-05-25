@@ -1,5 +1,74 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { Container, Flex, Text, Divider } from './StyledElements';
+
+// Styled components for Footer
+const FooterWrapper = styled.footer`
+  background-color: ${props => props.theme.colors.background.default};
+  color: ${props => props.theme.colors.text.secondary.dark};
+  padding: ${props => props.theme.spacing.xl} 0;
+  border-top: 1px solid ${props => props.theme.colors.border.dark};
+  margin-top: auto;
+`;
+
+const FooterHeading = styled.h4`
+  color: ${props => props.theme.colors.text.primary.dark};
+  margin-bottom: ${props => props.theme.spacing.md};
+  font-size: ${props => props.theme.typography.fontSize.lg};
+  font-weight: ${props => props.theme.typography.fontWeight.semibold};
+`;
+
+const FooterLinksList = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.spacing.xs};
+`;
+
+const FooterLink = styled(Link)`
+  color: ${props => props.theme.colors.text.secondary.dark};
+  text-decoration: none;
+  transition: ${props => props.theme.transitions.default};
+  
+  &:hover {
+    color: ${props => props.theme.colors.primary.main};
+  }
+`;
+
+const ExternalLink = styled.a`
+  color: ${props => props.theme.colors.text.secondary.dark};
+  text-decoration: none;
+  transition: ${props => props.theme.transitions.default};
+  
+  &:hover {
+    color: ${props => props.theme.colors.primary.main};
+  }
+`;
+
+const LogoSymbol = styled.span`
+  color: ${props => props.theme.colors.primary.main};
+`;
+
+const LogoContainer = styled.div`
+  font-size: 1.25rem;
+  font-weight: ${props => props.theme.typography.fontWeight.semibold};
+  margin-bottom: ${props => props.theme.spacing.md};
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.spacing.xs};
+`;
+
+const FooterSection = styled.div`
+  flex: 1 1 ${props => props.width || '200px'};
+`;
+
+const FooterBottom = styled.div`
+  margin-top: ${props => props.theme.spacing.xl};
+  padding-top: ${props => props.theme.spacing.md};
+  border-top: 1px solid ${props => props.theme.colors.border.dark};
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -11,101 +80,93 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ 
-      backgroundColor: 'var(--kavia-dark)', 
-      color: 'var(--text-secondary)',
-      padding: '2rem 0',
-      borderTop: '1px solid var(--border-color)',
-      marginTop: 'auto'
-    }}>
-      <div className="container">
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '2rem' }}>
-          
+    <FooterWrapper>
+      <Container>
+        <Flex wrap="wrap" justify="space-between" gap="xl">
           {/* Logo & Description */}
-          <div style={{ flex: '1 1 300px' }}>
-            <div className="logo" style={{ marginBottom: '1rem' }}>
-              <span className="logo-symbol">*</span> SkillSwap Hub
-            </div>
-            <p style={{ marginBottom: '1rem' }}>
+          <FooterSection width="300px">
+            <LogoContainer>
+              <LogoSymbol>*</LogoSymbol> SkillSwap Hub
+            </LogoContainer>
+            <Text margin="0 0 1rem 0">
               Connect with skilled individuals and exchange services in our peer-to-peer skill trading platform.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            </Text>
+            <Flex gap="md">
               {/* Social media placeholders */}
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+              <ExternalLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                 Twitter
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+              </ExternalLink>
+              <ExternalLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 Facebook
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)' }}>
+              </ExternalLink>
+              <ExternalLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                 Instagram
-              </a>
-            </div>
-          </div>
+              </ExternalLink>
+            </Flex>
+          </FooterSection>
           
           {/* Links */}
-          <div style={{ flex: '1 1 200px' }}>
-            <h4 style={{ color: 'var(--text-color)', marginBottom: '1rem' }}>Navigation</h4>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <FooterSection>
+            <FooterHeading>Navigation</FooterHeading>
+            <FooterLinksList>
               <li>
-                <Link to="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/">
                   Home
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/skills" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/skills">
                   Browse Skills
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/how-it-works" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/how-it-works">
                   How It Works
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/about">
                   About Us
-                </Link>
+                </FooterLink>
               </li>
-            </ul>
-          </div>
+            </FooterLinksList>
+          </FooterSection>
           
           {/* Resources */}
-          <div style={{ flex: '1 1 200px' }}>
-            <h4 style={{ color: 'var(--text-color)', marginBottom: '1rem' }}>Resources</h4>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <FooterSection>
+            <FooterHeading>Resources</FooterHeading>
+            <FooterLinksList>
               <li>
-                <Link to="/faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/faq">
                   FAQ
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/contact" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/contact">
                   Contact Us
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/terms" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/terms">
                   Terms of Service
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link to="/privacy" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
+                <FooterLink to="/privacy">
                   Privacy Policy
-                </Link>
+                </FooterLink>
               </li>
-            </ul>
-          </div>
-          
-        </div>
+            </FooterLinksList>
+          </FooterSection>
+        </Flex>
         
-        <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
-          <p style={{ textAlign: 'center', fontSize: '0.875rem' }}>
+        <FooterBottom>
+          <Text align="center" size="sm">
             &copy; {currentYear} SkillSwap Hub. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
+          </Text>
+        </FooterBottom>
+      </Container>
+    </FooterWrapper>
   );
 };
 
