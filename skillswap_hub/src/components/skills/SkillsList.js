@@ -1,5 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 import SkillCard from './SkillCard';
+import { Grid, Text } from '../common/StyledElements';
+
+// Styled components for SkillsList
+const EmptyState = styled.div`
+  padding: ${props => props.theme.spacing.xl} 0;
+  text-align: center;
+`;
+
+const LoadingState = styled.div`
+  padding: ${props => props.theme.spacing.xl} 0;
+  text-align: center;
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -15,27 +28,22 @@ import SkillCard from './SkillCard';
 const SkillsList = ({ skills = [], userId = null, loading = false, onRequestSkill }) => {
   if (loading) {
     return (
-      <div style={{ padding: '2rem 0', textAlign: 'center' }}>
-        <p>Loading skills...</p>
-      </div>
+      <LoadingState>
+        <Text>Loading skills...</Text>
+      </LoadingState>
     );
   }
 
   if (skills.length === 0) {
     return (
-      <div style={{ padding: '2rem 0', textAlign: 'center' }}>
-        <p>No skills found.</p>
-      </div>
+      <EmptyState>
+        <Text>No skills found.</Text>
+      </EmptyState>
     );
   }
 
   return (
-    <div style={{ 
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-      gap: '1.5rem',
-      margin: '1.5rem 0'
-    }}>
+    <Grid minWidth="280px" gap="lg">
       {skills.map(skill => (
         <div key={skill.id} style={{ height: '100%' }}>
           <SkillCard 
@@ -45,7 +53,7 @@ const SkillsList = ({ skills = [], userId = null, loading = false, onRequestSkil
           />
         </div>
       ))}
-    </div>
+    </Grid>
   );
 };
 
