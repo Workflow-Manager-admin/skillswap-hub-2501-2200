@@ -1,7 +1,88 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Card from '../common/Card';
 import Button from '../common/Button';
+import { Flex, Text, Avatar } from '../common/StyledElements';
+
+// Styled components for ProfileCard
+const BannerArea = styled.div`
+  height: 120px;
+  background-color: ${props => props.theme.colors.primary.main};
+  position: relative;
+`;
+
+const EditButtonContainer = styled.div`
+  position: absolute;
+  top: ${props => props.theme.spacing.xs};
+  right: ${props => props.theme.spacing.xs};
+`;
+
+const ProfileContent = styled.div`
+  padding: 0 ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg};
+`;
+
+const ProfileAvatar = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid ${props => props.theme.colors.neutral.white};
+  overflow: hidden;
+  margin-top: -50px;
+  position: relative;
+  background-color: ${props => props.theme.colors.neutral[200]};
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const ProfileName = styled.h2`
+  margin-top: ${props => props.theme.spacing.md};
+  margin-bottom: ${props => props.theme.spacing.xs};
+  font-weight: ${props => props.theme.typography.fontWeight.semibold};
+  color: ${props => props.theme.colors.text.primary.dark};
+`;
+
+const ProfileInfo = styled.div`
+  color: ${props => props.theme.colors.text.secondary.dark};
+  margin-bottom: ${props => props.theme.spacing.md};
+`;
+
+const ProfileInfoItem = styled.div`
+  margin-bottom: ${props => props.theme.spacing.xs};
+`;
+
+const ProfileBio = styled.div`
+  margin-bottom: ${props => props.theme.spacing.lg};
+`;
+
+const BioHeading = styled.h4`
+  margin-bottom: ${props => props.theme.spacing.xs};
+  font-weight: ${props => props.theme.typography.fontWeight.medium};
+  color: ${props => props.theme.colors.text.primary.dark};
+`;
+
+const StatsContainer = styled.div`
+  display: flex;
+  gap: ${props => props.theme.spacing.lg};
+  margin-bottom: ${props => props.theme.spacing.lg};
+`;
+
+const StatItem = styled.div``;
+
+const StatValue = styled.div`
+  font-weight: ${props => props.theme.typography.fontWeight.bold};
+  font-size: ${props => props.theme.typography.fontSize.xl};
+  color: ${props => props.theme.colors.text.primary.dark};
+`;
+
+const StatLabel = styled.div`
+  font-size: ${props => props.theme.typography.fontSize.sm};
+  color: ${props => props.theme.colors.text.secondary.dark};
+`;
 
 // PUBLIC_INTERFACE
 /**
@@ -18,7 +99,7 @@ const ProfileCard = ({ user, isCurrentUser = false, skillsCount = 0, swapsCount 
   if (!user) {
     return (
       <Card style={{ padding: '2rem', textAlign: 'center' }}>
-        <p>User data not found.</p>
+        <Text>User data not found.</Text>
       </Card>
     );
   }
@@ -35,115 +116,86 @@ const ProfileCard = ({ user, isCurrentUser = false, skillsCount = 0, swapsCount 
       }}
     >
       {/* Banner/header area */}
-      <div 
-        style={{ 
-          height: '120px', 
-          backgroundColor: 'var(--kavia-orange)', 
-          position: 'relative',
-        }}
-      >
+      <BannerArea>
         {/* Edit button for current user */}
         {isCurrentUser && (
-          <Link 
-            to="/profile/edit" 
-            style={{ 
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-            }}
-          >
-            <Button variant="outlined" size="sm">
-              Edit Profile
-            </Button>
-          </Link>
+          <EditButtonContainer>
+            <Link to="/profile/edit">
+              <Button variant="outlined" size="sm">
+                Edit Profile
+              </Button>
+            </Link>
+          </EditButtonContainer>
         )}
-      </div>
+      </BannerArea>
       
       {/* Profile content */}
-      <div style={{ padding: '0 1.5rem 1.5rem' }}>
+      <ProfileContent>
         {/* Avatar */}
-        <div style={{
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-          border: '4px solid white',
-          overflow: 'hidden',
-          marginTop: '-50px',
-          position: 'relative',
-          backgroundColor: '#f0f0f0'
-        }}>
+        <ProfileAvatar>
           <img 
             src={avatarUrl} 
             alt={user.name} 
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover' 
-            }}
           />
-        </div>
+        </ProfileAvatar>
         
         {/* Name and info */}
-        <h2 style={{ marginTop: '1rem', marginBottom: '0.25rem' }}>
+        <ProfileName>
           {user.name}
-        </h2>
+        </ProfileName>
         
-        <div style={{ color: 'var(--dark-gray)', marginBottom: '1rem' }}>
+        <ProfileInfo>
           {user.location && (
-            <div style={{ marginBottom: '0.25rem' }}>
+            <ProfileInfoItem>
               📍 {user.location}
-            </div>
+            </ProfileInfoItem>
           )}
-          <div>
+          <ProfileInfoItem>
             🗓️ Member since {new Date(user.createdAt).toLocaleDateString()}
-          </div>
-        </div>
+          </ProfileInfoItem>
+        </ProfileInfo>
         
         {/* Bio */}
         {user.bio && (
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem' }}>About</h4>
-            <p>{user.bio}</p>
-          </div>
+          <ProfileBio>
+            <BioHeading>About</BioHeading>
+            <Text>{user.bio}</Text>
+          </ProfileBio>
         )}
         
         {/* Stats */}
-        <div style={{ 
-          display: 'flex',
-          gap: '1.5rem',
-          marginBottom: '1.5rem',
-        }}>
-          <div>
-            <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
+        <StatsContainer>
+          <StatItem>
+            <StatValue>
               {skillsCount}
-            </div>
-            <div style={{ color: 'var(--dark-gray)', fontSize: '0.875rem' }}>
+            </StatValue>
+            <StatLabel>
               Skills Offered
-            </div>
-          </div>
+            </StatLabel>
+          </StatItem>
           
-          <div>
-            <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>
+          <StatItem>
+            <StatValue>
               {swapsCount}
-            </div>
-            <div style={{ color: 'var(--dark-gray)', fontSize: '0.875rem' }}>
+            </StatValue>
+            <StatLabel>
               Swaps Completed
-            </div>
-          </div>
-        </div>
+            </StatLabel>
+          </StatItem>
+        </StatsContainer>
         
         {/* Actions */}
         {!isCurrentUser && (
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <Flex gap="md">
             <Button variant="primary">
               Send Message
             </Button>
             <Button variant="outlined">
               View Skills
             </Button>
-          </div>
+          </Flex>
         )}
-      </div>
+      </ProfileContent>
     </Card>
   );
 };
